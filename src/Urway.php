@@ -124,24 +124,24 @@ class Urway {
                 return $urldecode;
             }
     }
-    //request data = paramaters from _GET 
-    public function paymentResponseStatus($request_data = []){
+
+    public function checkoutResponseStatus(){
         #parameters from payment getaway
-        $amount                     =  $request_data['amount'];
-        $status                     =  $request_data['ResponseCode'];
-        $result                     =  $request_data['Result'];
-        $id                         =  $request_data['TranId'];
-        $trackid                    =  $request_data['TrackId'];
-        $responseHash               =  $request_data['responseHash'];
+        $amount                     =  $_GET['amount'];
+        $status                     =  $_GET['ResponseCode'];
+        $result                     =  $_GET['Result'];
+        $id                         =  $_GET['TranId'];
+        $trackid                    =  $_GET['TrackId'];
+        $responseHash               =  $_GET['responseHash'];
         
         $merchantKey                = config('urway.merchantKey');
         
         $requestHash                =  "$id|$merchantKey|$status|$amount";
         $hash                       =  hash('sha256', $requestHash);
         if($hash == $responseHash  && ($result == 'Successful' || $result == 'Success') ) {
-            return response()->json(['key' => 'success' ,'msg' => 'checkout success' ,'result' => $result ,'data' => $request_data ]);
+            return response()->json(['key' => 'success' ,'msg' => 'checkout success' ,'result' => $result ,'data' => $_GET ]);
         }else{
-            return response()->json(['key' => 'fail' , 'msg' => 'checkout failed','result' => $result ,'data' => $request_data ]);
+            return response()->json(['key' => 'fail' , 'msg' => 'checkout failed','result' => $result ,'data' => $_GET ]);
         }
     }
    
