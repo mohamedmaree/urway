@@ -19,7 +19,7 @@ class Urway {
                 'terminalId'    => $name,
                 'customerEmail' => $customerInfo['email'],
                 'action'        => "1", //visa , master , mada
-                'merchantIp'    => getenv('SERVER_ADDR'),
+                'merchantIp'    => (getenv('SERVER_ADDR') == false)? $_SERVER['REMOTE_ADDR'] : getenv('SERVER_ADDR') ,
                 'password'      => $password,
                 'currency'      => $currency,
                 'country'       => config('urway.country'),
@@ -80,7 +80,7 @@ class Urway {
                 'terminalId'    => $name,
                 'customerEmail' => $customerInfo['email'],
                 'action'        => "13", //stc
-                'merchantIp'    => getenv('SERVER_ADDR'),
+                'merchantIp'    => (getenv('SERVER_ADDR') == false)? $_SERVER['REMOTE_ADDR'] : getenv('SERVER_ADDR') ,
                 'password'      => $password,
                 'currency'      => $currency,
                 'country'       => config('urway.country'),
