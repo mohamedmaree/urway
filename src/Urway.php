@@ -19,7 +19,7 @@ class Urway {
                 'terminalId'    => $name,
                 'customerEmail' => $customerInfo['email'],
                 'action'        => "1", //visa , master , mada
-                'merchantIp'    => $_SERVER['SERVER_ADDR'],
+                'merchantIp'    => getenv('SERVER_ADDR'),
                 'password'      => $password,
                 'currency'      => $currency,
                 'country'       => config('urway.country'),
@@ -65,7 +65,7 @@ class Urway {
     }
 
 
-    public function checkoutStc($amount = 0.0 , $customerInfo = []){
+    public static function checkoutStc($amount = 0.0 , $customerInfo = []){
             $random             = rand(1111111,9999999);
             $currency           = config('urway.currency');
             $merchantKey        = config('urway.merchantKey');
@@ -80,7 +80,7 @@ class Urway {
                 'terminalId'    => $name,
                 'customerEmail' => $customerInfo['email'],
                 'action'        => "13", //stc
-                'merchantIp'    => $_SERVER['SERVER_ADDR'],
+                'merchantIp'    => getenv('SERVER_ADDR'),
                 'password'      => $password,
                 'currency'      => $currency,
                 'country'       => config('urway.country'),
@@ -125,23 +125,25 @@ class Urway {
             }
     }
 
-    public function checkoutResponseStatus(){
+    public static function checkoutResponseStatus(){
         #parameters from payment getaway
-        $amount                     =  $_GET['amount'];
-        $status                     =  $_GET['ResponseCode'];
-        $result                     =  $_GET['Result'];
-        $id                         =  $_GET['TranId'];
-        $trackid                    =  $_GET['TrackId'];
-        $responseHash               =  $_GET['responseHash'];
-        
+        if(!$_GET){
+            return ['key' => 'fail' , 'msg' => 'no data back from urway' ,'data' => $_GET ];
+        }
+        $amount                     =  ($_GET['amount'])??'';
+        $status                     =  ($_GET['ResponseCode'])??'';
+        $result                     =  ($_GET['Result'])??'';
+        $id                         =  ($_GET['TranId'])??'';
+        $trackid                    =  ($_GET['TrackId'])??'';
+        $responseHash               =  ($_GET['responseHash'])??'';
         $merchantKey                = config('urway.merchantKey');
         
         $requestHash                =  "$id|$merchantKey|$status|$amount";
         $hash                       =  hash('sha256', $requestHash);
         if($hash == $responseHash  && ($result == 'Successful' || $result == 'Success') ) {
-            return response()->json(['key' => 'success' ,'msg' => 'checkout success' ,'result' => $result ,'data' => $_GET ]);
+            return ['key' => 'success' ,'msg' => 'checkout success' ,'result' => $result ,'data' => $_GET ];
         }else{
-            return response()->json(['key' => 'fail' , 'msg' => 'checkout failed','result' => $result ,'data' => $_GET ]);
+            return ['key' => 'fail' , 'msg' => 'checkout failed','result' => $result ,'data' => $_GET ];
         }
     }
    
