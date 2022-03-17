@@ -46,7 +46,7 @@ use maree\urway\Urway;
 Urway::checkoutResponseStatus();  
 
 ```
-return json response with 
+return response with 
 ```php
 
 ['key' => 'success' ,'msg' => 'checkout success' ,'result' => $result ,'data' => $_GET ]  
