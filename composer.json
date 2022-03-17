@@ -1,0 +1,26 @@
+{
+    "name": "maree/urway",
+    "description": "package to pay with urway payment services",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "mohamed maree",
+            "email": "m7mdmaree26@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "maree\\urway\\" : "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "maree\\urway\\UrwayServiceProvider"
+            ]
+        }
+    }       
+}
