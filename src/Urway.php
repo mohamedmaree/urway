@@ -32,7 +32,7 @@ class Urway {
             }else{
                $request_url = config('urway.test_url');
             }
-            $ch                 = curl_init($request_url); //test
+            $ch                 = curl_init($request_url); 
             curl_setopt($ch     , CURLOPT_CUSTOMREQUEST     , "POST");
             curl_setopt($ch     , CURLOPT_POSTFIELDS        , $data);
             curl_setopt($ch     , CURLOPT_RETURNTRANSFER    , true);
@@ -93,7 +93,7 @@ class Urway {
             }else{
                $request_url = config('urway.test_url');
             }
-            $ch                 = curl_init($request_url); //test
+            $ch                 = curl_init($request_url);
             curl_setopt($ch     , CURLOPT_CUSTOMREQUEST     , "POST");
             curl_setopt($ch     , CURLOPT_POSTFIELDS        , $data);
             curl_setopt($ch     , CURLOPT_RETURNTRANSFER    , true);
