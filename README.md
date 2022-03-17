@@ -36,17 +36,19 @@ Urway::checkoutStc($amount = 1.0 , $customerInfo);
 ```
 
 ## note 
-- define the checkout response url with urway team 
-- create route for response url
-- create function for checkout response 
+- define the checkout return response url route with urway team EX: https://mysite.com/paymentresponse
+- create route for response url 'paymentresponse' 
+EX: Route::get('paymentresponse', 'PaymentsController@paymentresponse')->name('paymentresponse'); 
+- create function for checkout response 'paymentresponse'
 - use that function to check if payment failed or success
 
+##inside 'paymentresponse' function use:
 ```php
 use maree\urway\Urway;
-Urway::checkoutResponseStatus();  
+$response = Urway::checkoutResponseStatus();  
 
 ```
-return response with 
+return response like: 
 ```php
 
 ['key' => 'success' ,'msg' => 'checkout success' ,'result' => $result ,'data' => $_GET ]  
