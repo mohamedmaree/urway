@@ -36,7 +36,7 @@ Urway::checkoutStc($amount = 1.0 , $customerInfo);
 ```
 
 ## note 
-- define the checkout resonse url with urway team 
+- define the checkout response url with urway team 
 - create route for response url
 - create function for checkout response 
 - use that function to check if payment failed or success
