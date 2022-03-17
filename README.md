@@ -42,7 +42,7 @@ EX: Route::get('paymentresponse', 'PaymentsController@paymentresponse')->name('p
 - create function for checkout response 'paymentresponse'
 - use that function to check if payment failed or success
 
-##inside 'paymentresponse' function use:
+## inside 'paymentresponse' function use:
 ```php
 use maree\urway\Urway;
 $response = Urway::checkoutResponseStatus();  
