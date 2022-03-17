@@ -36,7 +36,7 @@ Urway::checkoutStc($amount = 1.0 , $customerInfo);
 ```
 
 ## note 
-- define the checkout return response url route with urway team EX: https://mysite.com/paymentresponse
+- define (callback) the checkout return response url route with urway team EX: https://mysite.com/paymentresponse
 - create route for response url 'paymentresponse' 
 EX: Route::get('paymentresponse', 'PaymentsController@paymentresponse')->name('paymentresponse'); 
 - create function for checkout response 'paymentresponse'
@@ -61,6 +61,7 @@ or
 ['key' => 'fail' , 'msg' => 'checkout failed','result' => $result ,'data' => $_GET ] 
 
 ```
+note: you can use response from data to save transactions in database - 'data' key contain params like 'amount' and 'TranId' => transaction id  
 
 - Test Card Details
 - Card Number: Master:5123450000000008 - Visa: 4508 7500 1574 1019
