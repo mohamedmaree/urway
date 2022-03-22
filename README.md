@@ -6,7 +6,7 @@ You can install the package via [Composer](https://getcomposer.org).
 ```bash
 composer require maree/urway
 ```
-Publish your sms config file with
+Publish your urway config file with
 
 ```bash
 php artisan vendor:publish --provider="maree\urway\UrwayServiceProvider" --tag="urway"
