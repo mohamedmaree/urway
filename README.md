@@ -30,13 +30,13 @@ Urway::checkout($amount = 1.0 , $customerInfo);
 
 ```php
 use maree\urway\Urway;
-$customerInfo = ['email' => 'customer@site.com'];
-Urway::checkoutStc($amount = 1.0 , $customerInfo);  
+//$params= ['email' => 'customer@site.com','response_url' => route('your_callback_function')]
+Urway::checkoutStc($amount = 1.0 , $params);  
 
 ```
 
 ## note 
-- define (callback) the checkout return response url route with urway team EX: https://mysite.com/paymentresponse
+- define (callback) the checkout return response url route with request $params[response_url] EX: https://mysite.com/paymentresponse
 - create route for response url 'paymentresponse' 
 EX: Route::get('paymentresponse', 'PaymentsController@paymentresponse')->name('paymentresponse'); 
 - create function for checkout response 'paymentresponse'
